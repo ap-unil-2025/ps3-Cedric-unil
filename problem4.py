@@ -10,6 +10,7 @@ def create_sample_file(filename="sample.txt"):
     Args:
         filename (str): Name of the file to create
     """
+
     content = """Python is a powerful programming language.
 It is widely used in web development, data science, and automation.
 Python's simple syntax makes it great for beginners.
@@ -30,9 +31,12 @@ def count_words(filename):
     Returns:
         int: Total number of words
     """
+
+    with open(filename, "r") as f:
+        words = f.read().split()
     # TODO: Open file and count words
     # Hint: Use split() to separate words
-    pass
+        return len(words)
 
 
 def count_lines(filename):
@@ -45,8 +49,10 @@ def count_lines(filename):
     Returns:
         int: Total number of lines
     """
-    # TODO: Open file and count lines
-    pass
+    with open(filename, "r") as f:
+        line = f.read().count("\n")
+        print("numbers of lines: ", line+1)
+        return line
 
 
 def count_characters(filename, include_spaces=True):
@@ -62,7 +68,14 @@ def count_characters(filename, include_spaces=True):
     """
     # TODO: Open file and count characters
     # If include_spaces is False, don't count spaces
-    pass
+   
+    with open(filename, "r") as f:
+        characters = f.read()
+        
+        if include_spaces: return len(characters)
+        else:
+            return len(characters.replace(" ", ""))
+    
 
 
 def find_longest_word(filename):
@@ -77,8 +90,14 @@ def find_longest_word(filename):
     """
     # TODO: Find the longest word
     # Hint: You might need to remove punctuation
-    pass
+    with open(filename, "r") as f:
+        longest = f.read().replace(".", " ").replace("\n"," ").replace(","," ").split()
 
+        x=""
+        for w in longest:
+            if len(w) > len(x):
+                x = w
+        return x
 
 def word_frequency(filename):
     """
@@ -95,6 +114,26 @@ def word_frequency(filename):
 
     frequency = {}
 
+    with open(filename, "r") as f:
+        frequent = f.read().lower()
+
+        
+        for p in string.punctuation:
+            frequent = frequent.replace(p, " ")
+        
+        for word in frequent.split():
+            frequency[word] = frequency.get(word, 0) + 1
+        
+        
+        sorted_frequency = sorted(frequency.items(), key=lambda item: item[1], reverse=True)
+        
+        top_5_words_list = sorted_frequency[:5]
+        
+        # Convert the list of tuples back into a dictionary
+        top_5_words_dict = dict(top_5_words_list) 
+        
+        return top_5_words_dict # Now returns a dictionary
+        
     # TODO: Open file
     # TODO: Read all words
     # TODO: Convert to lowercase
