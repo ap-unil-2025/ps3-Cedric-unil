@@ -23,15 +23,15 @@ def get_numbers_from_user():
 def analyze_numbers(numbers):
     analysis = {}
     # Total count of elements
-    count = len(numbers)
+    analysis["count"] = len(numbers)
     # Sum all numbers
-    total_sum = sum(numbers)
+    analysis["sum"] = sum(numbers)
     # Average of the list
-    average = total_sum / count
+    analysis["average"] = analysis["sum"] / analysis["count"]
     # Minimum value
-    minimum = min(numbers)
+    analysis["minimum"] = min(numbers)
     # Maximum value
-    maximum = max(numbers)
+    analysis["maximum"] = max(numbers)
     # Count even numbers and odd
     even_count = 0
     odd_count = 0
@@ -40,16 +40,9 @@ def analyze_numbers(numbers):
             even_count += 1
         else:
             odd_count += 1
+    analysis["even_count"], analysis["odd_count"] = even_count, odd_count
     # Return the results as a dictionary
-    return {
-        "count": count,
-        "sum": total_sum,
-        "average": average,
-        "min": minimum,
-        "max": maximum,
-        "even count": even_count,
-        "odd count": odd_count
-        }
+    return analysis
 
 
 
