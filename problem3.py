@@ -22,15 +22,6 @@ def get_numbers_from_user():
 
 def analyze_numbers(numbers):
     analysis = {}
-    if not numbers:
-        return {
-            "count": 0,
-            "sum": 0,
-            "average": 0,
-            "min": None,
-            "max": None,
-            "even_count": 0
-        }
     # Total count of elements
     count = len(numbers)
     # Sum all numbers
@@ -66,10 +57,9 @@ def display_analysis(analysis):
     print("\nAnalysis Results:")
     print("-" * 20)
     if not analysis:
-        print(analysis)
-    else:
-        print(analysis)
-
+        return    
+    for key in analysis.keys():
+        print(f"{key} is {analysis[key]}")
 
     # TODO: Display all analysis results in a nice format
     # Example:
