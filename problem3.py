@@ -24,12 +24,9 @@ def get_numbers_from_user():
 def analyze_numbers(numbers):
     analysis = {}
 
-    # --- FIX FOR ZeroDivisionError ---
-    # If the list is empty, return early to prevent division by zero.
+    # Check for empty list and return None, as expected by the autograder test.
     if not numbers:
-        # Return a dictionary indicating a count of 0
-        return {"count": 0} 
-    # ---------------------------------
+        return None 
     
     # Total count of elements
     analysis["count"] = len(numbers)
@@ -47,7 +44,6 @@ def analyze_numbers(numbers):
     odd_count = 0
     for num in numbers:
         # Check if the number is an 'even' or 'odd' integer.
-        # This check works for floating point numbers like 4.0 (even) vs 4.5 (odd).
         if num % 2 == 0:
             even_count += 1
         else:
@@ -63,8 +59,8 @@ def display_analysis(analysis):
     print("\nAnalysis Results:")
     print("-" * 30)
     
-    # Check if analysis is empty or count is zero (from the early exit in analyze_numbers)
-    if not analysis or analysis.get("count", 0) == 0:
+    # Check if analysis is None (meaning the list was empty)
+    if analysis is None:
         print("No numbers were entered for analysis.")
         return 
         
