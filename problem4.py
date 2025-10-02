@@ -42,17 +42,13 @@ def count_words(filename):
 def count_lines(filename):
     """
     Count total lines in the file.
-
-    Args:
-        filename (str): Name of the file to analyze
-
-    Returns:
-        int: Total number of lines
+    ...
     """
     with open(filename, "r") as f:
-        line = f.read().count("\n")
-        print("numbers of lines: ", line+1)
-        return line
+        # readlines() returns a list of all lines, 
+        # including the newline characters in each string.
+        lines = f.readlines() 
+        return len(lines) # <--- The length of the list is the line count
 
 
 def count_characters(filename, include_spaces=True):
